@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объекты ЮНЕСКО в России | Главная</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-landmark"></i>
+                <h1>Наследие<span>России</span>.рф</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Главная</a></li>
+                    <li><a href="objects.html">Все объекты</a></li>
+                <!--<li><a href="map.html">Карта</a></li>
+                    <li><a href="about.html">О проекте</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="container">
+            <h2>Объекты всемирного наследия ЮНЕСКО в России</h2>
+            <p>Откройте для себя уникальные культурные и природные сокровища нашей страны, признанные всем миром. 34 объекта, который рассказывают историю России.</p>
+            <a href="#objects" class="btn">Исследовать объекты</a>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <!-- Секция с объектами -->
+        <section class="objects-section" id="objects">
+            <h2 class="section-title">Объекты ЮНЕСКО в России</h2>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="cultural">Культурные</button>
+                <button class="filter-btn" data-filter="natural">Природные</button>
+                <button class="filter-btn" data-filter="mixed">Смешанные</button>
+            </div>
+
+            <div class="objects-grid">
+                <!-- Карточка объекта 1 -->
+                <article class="object-card" data-type="natural">
+                    <img src="C:\Users\Серафим\Desktop\сайт для проекта\images\байкал.jpg" alt="Озеро Байкал" class="card-img">
+                    <div class="card-content">
+                        <h3>Озеро Байкал</h3>
+                        <div class="meta">
+                            <span class="natural">Природный</span>
+                            <span>Включён в 1996 г.</span>
+                        </div>
+                        <p>Самое глубокое и древнее озеро на планете, содержащее около 20% мировых запасов пресной воды. Уникальная экосистема Байкала является домом для тысяч эндемичных видов.</p>
+                        <a href="object.html?id=baikal" class="card-link">Подробнее об объекте <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Карточка объекта 2 -->
+                <article class="object-card" data-type="cultural">
+                    <img src="C:\Users\Серафим\Desktop\сайт для проекта\images\Кремль.webp" alt="Московский Кремль" class="card-img">
+                    <div class="card-content">
+                        <h3>Московский Кремль и Красная площадь</h3>
+                        <div class="meta">
+                            <span class="cultural">Культурный</span>
+                            <span>Включён в 1990 г.</span>
+                        </div>
+                        <p>Символ российской государственности и духовный центр страны. Архитектурный ансамбль формировался с XV по XX век и включает соборы, дворцы и крепостные стены.</p>
+                        <a href="object.html?id=kremlin" class="card-link">Подробнее об объекте <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Карточка объекта 3 -->
+                <article class="object-card" data-type="cultural">
+                    <img src="C:\Users\Серафим\Desktop\сайт для проекта\images\спб.jpg" alt="Исторический центр Санкт-Петербурга" class="card-img">
+                    <div class="card-content">
+                        <h3>Исторический центр Санкт-Петербурга</h3>
+                        <div class="meta">
+                            <span class="cultural">Культурный</span>
+                            <span>Включён в 1990 г.</span>
+                        </div>
+                        <p>Величественный архитектурный ансамбль XVIII-XIX веков, созданный лучшими европейскими архитекторами. "Северная Венеция" с её каналами, дворцами и музеями.</p>
+                        <a href="object.html?id=petersburg" class="card-link">Подробнее об объекте <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="objects.html" class="btn">Смотреть все 34 объекта</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="objects.html">Все объекты</a></li>
+                        <li><a href="map.html">Интерактивная карта</a></li>
+                        <li><a href="about.html">О проекте</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Категории объектов</h4>
+                    <ul>
+                        <li><a href="objects.html?type=cultural">Культурное наследие</a></li>
+                        <li><a href="objects.html?type=natural">Природное наследие</a></li>
+                        <li><a href="objects.html?type=mixed">Смешанные объекты</a></li>
+                    </ul>
+                </div>
+            <div class="copyright">
+                <p>© 2025 Образовательный проект "Объекты ЮНЕСКО в России". Все права защищены.</p>
+                <p>Материалы сайта могут быть использованы в учебных целях.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

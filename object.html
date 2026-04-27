@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка... | НаследиеРоссии.рф</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Дополнительные стили для страницы объекта */
+        .object-hero {
+            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.9)), url('https://images.unsplash.com/photo-1559661175-12c3d9c5748a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            transition: background-image 0.5s;
+        }
+        
+        .object-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .object-breadcrumbs {
+            padding: 1rem 0;
+            background: #f1f3f5;
+        }
+        
+        .object-breadcrumbs a {
+            color: #1e3c72;
+            text-decoration: none;
+        }
+        
+        .object-breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        
+        .object-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .object-main {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .object-sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .info-table tr {
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .info-table td {
+            padding: 12px 0;
+        }
+        
+        .info-table td:first-child {
+            font-weight: 600;
+            color: #1e3c72;
+            width: 40%;
+        }
+        
+        .type-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .type-badge.cultural {
+            background-color: #d63384;
+            color: white;
+        }
+        
+        .type-badge.natural {
+            background-color: #20c997;
+            color: white;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 2rem 0;
+            color: #1e3c72;
+            font-weight: 600;
+        }
+        
+        .back-link i {
+            margin-right: 5px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            font-size: 1.5rem;
+            color: #666;
+        }
+        
+        .error {
+            text-align: center;
+            padding: 4rem;
+            font-size: 1.5rem;
+            color: #dc3545;
+        }
+        
+        @media (max-width: 768px) {
+            .object-content {
+                grid-template-columns: 1fr;
+            }
+            .object-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-landmark"></i>
+                <h1>Наследие<span>России</span>.рф</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="objects.html">Все объекты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <div class="object-breadcrumbs">
+        <div class="container">
+            <a href="index.html">Главная</a> / <a href="objects.html">Объекты</a> / <span id="breadcrumb-category">Загрузка...</span>
+        </div>
+    </div>
+
+    <!-- Герой-секция объекта (будет заполнена скриптом) -->
+    <section class="object-hero" id="object-hero" style="background-image: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.9)), url('');">
+        <div class="container">
+            <h1 id="object-title">Загрузка...</h1>
+            <p id="object-short-desc">Пожалуйста, подождите</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner fa-spin" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Загрузка информации об объекте...</p>
+        </div>
+        
+        <div id="content" style="display: none;">
+            <div class="object-content">
+                <!-- Основной контент -->
+                <div class="object-main">
+                    <h2>Об объекте</h2>
+                    <p id="object-description1"></p>
+                    
+                    <p id="object-description2"></p>
+                    
+                    <h2>История включения в список ЮНЕСКО</h2>
+                    <p id="object-history"></p>
+                    
+                    <h2>Галерея</h2>
+                    <div class="gallery" id="gallery"></div>
+                </div>
+                
+                <!-- Сайдбар с информацией -->
+                <div class="object-sidebar">
+                    <h3>Краткая информация</h3>
+                    <table class="info-table">
+                        <tr>
+                            <td>Год включения</td>
+                            <td id="info-year"></td>
+                        </tr>
+                        <tr>
+                            <td>Тип объекта</td>
+                            <td id="info-type"></td>
+                        </tr>
+                        <tr>
+                            <td>Критерии</td>
+                            <td id="info-criteria"></td>
+                        </tr>
+                        <tr>
+                            <td>Регион</td>
+                            <td id="info-region"></td>
+                        </tr>
+                        <tr>
+                            <td>ID в ЮНЕСКО</td>
+                            <td id="info-id"></td>
+                        </tr>
+                    </table>
+                    
+                <!--<div style="margin: 2rem 0;">
+                        <h3>На карте</h3>
+                        <div style="background: #e9ecef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center;" id="map-placeholder">
+                            <p style="color: #666;">Загрузка карты...</p>
+                        </div>-->
+                        <!-- Здесь можно будет вставить Яндекс.Карты или Google Maps -->
+                <!--</div>-->
+                    
+                    <div>
+                        <h3>Поделиться</h3>
+                        <div style="display: flex; gap: 15px; font-size: 1.5rem;">
+                            <a href="#" id="share-vk" style="color: #1e3c72;"><i class="fab fa-vk"></i></a>
+                            <a href="#" id="share-tg" style="color: #1e3c72;"><i class="fab fa-telegram"></i></a>
+                            <a href="#" id="share-ok" style="color: #1e3c72;"><i class="fab fa-odnoklassniki"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="error" class="error" style="display: none;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Объект не найден</p>
+            <a href="objects.html" class="btn" style="margin-top: 1rem;">Вернуться к списку</a>
+        </div>
+        
+        <a href="objects.html" class="back-link" id="back-link" style="display: none;"><i class="fas fa-arrow-left"></i> Вернуться к списку объектов</a>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="objects.html">Все объекты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Категории объектов</h4>
+                    <ul>
+                        <li><a href="objects.html?type=cultural">Культурное наследие</a></li>
+                        <li><a href="objects.html?type=natural">Природное наследие</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Образовательный проект "Объекты ЮНЕСКО в России". Все права защищены.</p>
+                <p>Материалы сайта могут быть использованы в учебных целях.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключаем данные -->
+    <script src="data.js"></script>
+    
+    <!-- Скрипт для загрузки данных объекта -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Получаем ID из URL (например, object.html?id=baikal)
+            const urlParams = new URLSearchParams(window.location.search);
+            const objectId = urlParams.get('id');
+            
+            const loadingEl = document.getElementById('loading');
+            const contentEl = document.getElementById('content');
+            const errorEl = document.getElementById('error');
+            const backLink = document.getElementById('back-link');
+            
+            // Если ID нет — показываем ошибку
+            if (!objectId) {
+                loadingEl.style.display = 'none';
+                errorEl.style.display = 'block';
+                errorEl.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i><p>Не указан ID объекта</p><a href="objects.html" class="btn" style="margin-top: 1rem;">Вернуться к списку</a>';
+                return;
+            }
+            
+            // Получаем данные объекта
+            const data = getObjectData(objectId);
+            
+            if (!data) {
+                loadingEl.style.display = 'none';
+                errorEl.style.display = 'block';
+                errorEl.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i><p>Объект с ID "' + objectId + '" не найден</p><a href="objects.html" class="btn" style="margin-top: 1rem;">Вернуться к списку</a>';
+                return;
+            }
+            
+            // Данные найдены — заполняем страницу
+            loadingEl.style.display = 'none';
+            contentEl.style.display = 'block';
+            backLink.style.display = 'inline-block';
+            
+            // Заголовок страницы
+            document.title = data.title + ' | НаследиеРоссии.рф';
+            
+            // Хлебные крошки
+            document.getElementById('breadcrumb-category').textContent = data.type;
+            
+            // Герой-секция
+            const heroSection = document.getElementById('object-hero');
+            heroSection.style.backgroundImage = 'linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.9)), url("' + data.heroImage + '")';
+            document.getElementById('object-title').textContent = data.title;
+            document.getElementById('object-short-desc').textContent = data.shortDesc;
+            
+            // Основное описание
+            document.getElementById('object-description1').textContent = data.description1;
+            document.getElementById('object-description2').textContent = data.description2;
+            document.getElementById('object-history').textContent = data.history;
+            
+            // Информационная таблица
+            document.getElementById('info-year').textContent = data.year;
+            
+            const typeCell = document.getElementById('info-type');
+            typeCell.innerHTML = '<span class="type-badge ' + data.typeClass + '">' + data.type + '</span>';
+            
+            document.getElementById('info-criteria').textContent = data.criteria;
+            document.getElementById('info-region').textContent = data.region;
+            document.getElementById('info-id').textContent = data.unescoId;
+            
+            // Галерея
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = '';
+            if (data.images && data.images.length > 0) {
+                data.images.forEach(imgSrc => {
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = data.title;
+                    img.addEventListener('click', function() {
+                        window.open(imgSrc, '_blank');
+                    });
+                    gallery.appendChild(img);
+                });
+            } else {
+                gallery.innerHTML = '<p>Нет изображений</p>';
+            }
+            
+            // Карта (заглушка)
+            document.getElementById('map-placeholder').innerHTML = '<p style="color: #666;">📍 ' + data.region + '</p>';
+            
+            // Кнопки поделиться
+            const pageUrl = encodeURIComponent(window.location.href);
+            const pageTitle = encodeURIComponent(data.title + ' — объект ЮНЕСКО в России');
+            
+            document.getElementById('share-vk').href = 'https://vk.com/share.php?url=' + pageUrl + '&title=' + pageTitle;
+            document.getElementById('share-tg').href = 'https://t.me/share/url?url=' + pageUrl + '&text=' + pageTitle;
+            document.getElementById('share-ok').href = 'https://connect.ok.ru/offer?url=' + pageUrl + '&title=' + pageTitle;
+        });
+    </script>
+</body>
+</html>

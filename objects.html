@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все объекты ЮНЕСКО в России | НаследиеРоссии.рф</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Дополнительные стили только для страницы со всеми объектами */
+        .page-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .stats-banner {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e3c72;
+            line-height: 1.2;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .cultural-badge {
+            color: #d63384;
+        }
+        
+        .natural-badge {
+            color: #20c997;
+        }
+        
+        .search-box {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #4dabf7;
+            box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта (такая же как на главной) -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-landmark"></i>
+                <h1>Наследие<span>России</span>.рф</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="objects.html" class="active">Все объекты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Заголовок страницы -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Все объекты всемирного наследия ЮНЕСКО в России</h1>
+            <p>34 уникальных объекта — от Калининграда до Камчатки. Культурные и природные сокровища нашей страны.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- Статистика -->
+        <div class="stats-banner">
+            <div class="stat-item">
+                <div class="stat-number">34</div>
+                <div class="stat-label">Всего объектов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number cultural-badge">22</div>
+                <div class="stat-label">Культурных</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number natural-badge">12</div>
+                <div class="stat-label">Природных</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1990г. </div>
+                <div class="stat-label">Первый объект</div>
+            </div>
+        </div>
+
+        <!-- Поиск и фильтры -->
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Поиск объекта по названию или региону...">
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Все объекты</button>
+            <button class="filter-btn" data-filter="cultural">Культурные (22)</button>
+            <button class="filter-btn" data-filter="natural">Природные (12)</button>
+        </div>
+
+        <!-- Сетка со всеми 34 объектами -->
+        <div class="objects-grid" id="objectsGrid">
+            <!-- КУЛЬТУРНЫЕ ОБЪЕКТЫ (22) -->
+            
+            <!-- 1. Исторический центр Санкт-Петербурга -->
+            <article class="object-card" data-type="cultural" data-name="санкт-петербург петербург питер">
+                <img src="images\спб.jpg" alt="Санкт-Петербург" class="card-img">
+                <div class="card-content">
+                    <h3>Исторический центр Санкт-Петербурга</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>1990 г.</span>
+                    </div>
+                    <p>Северная Венеция: дворцы, каналы, мосты и музеи. Архитектурный ансамбль XVIII-XIX веков.</p>
+                    <a href="object.html?id=petersburg" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 2. Московский Кремль и Красная площадь -->
+            <article class="object-card" data-type="cultural" data-name="москва кремль красная площадь">
+                <img src="images\Кремль.webp" alt="Московский Кремль" class="card-img">
+                <div class="card-content">
+                    <h3>Московский Кремль и Красная площадь</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>1990 г.</span>
+                    </div>
+                    <p>Символ российской государственности. Соборы, дворцы и крепостные стены XV-XX веков.</p>
+                    <a href="object.html?id=kremlin" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 3. Кижи (Погост) -->
+            <article class="object-card" data-type="cultural" data-name="кижи кижский карелия">
+                <img src="images\Kizhi_church_1.jpg" alt="Кижи" class="card-img">
+                <div class="card-content">
+                    <h3>Кижский погост</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>1990 г.</span>
+                    </div>
+                    <p>Шедевр деревянного зодчества на острове в Карелии. Церковь Преображения Господня с 22 главами.</p>
+                    <a href="object.html?id=kizhi" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 4. Великий Новгород -->
+            <article class="object-card" data-type="cultural" data-name="новгород великий">
+                <img src="images\новгород вел.jpg" alt="Великий Новгород" class="card-img">
+                <div class="card-content">
+                    <h3>Исторические памятники Новгорода</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>1992 г.</span>
+                    </div>
+                    <p>Древнерусский центр с Софийским собором, кремлем и средневековыми фресками.</p>
+                    <a href="object.html?id=novgorod" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 5. Соловецкие острова -->
+            <article class="object-card" data-type="cultural" data-name="соловки соловецкий">
+                <img src="images\соловки.jpg" alt="Соловки" class="card-img">
+                <div class="card-content">
+                    <h3>Соловецкие острова</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>1992 г.</span>
+                    </div>
+                    <p>Духовный и культурный центр Русского Севера. Монастырь, лабиринты и древняя история.</p>
+                    <a href="object.html?id=solovki" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 6. Владимир и Суздаль -->
+            <article class="object-card" data-type="cultural" data-name="владимир суздаль">
+                <img src="images\белокаменный собор.jpg" alt="Владимир" class="card-img">
+                <div class="card-content">
+                    <h3>Белокаменные памятники Владимира и Суздаля</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>1992 г.</span>
+                    </div>
+                    <p>Древнерусское зодчество: Успенский собор, Золотые ворота, церковь Покрова на Нерли.</p>
+                    <a href="object.html?id=vladimir" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 7. Троице-Сергиева лавра -->
+            <article class="object-card" data-type="cultural" data-name="сергиев посад лавра">
+                <img src="images\Vid-Lavry-s-vysoty--400x227.jpg" alt="Троице-Сергиева лавра" class="card-img">
+                <div class="card-content">
+                    <h3>Троице-Сергиева лавра</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>1993 г.</span>
+                    </div>
+                    <p>Крупнейший мужской монастырь России. Духовный центр православия, архитектура XV-XVIII вв.</p>
+                    <a href="object.html?id=lavra" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 8. Церковь Вознесения в Коломенском -->
+            <article class="object-card" data-type="cultural" data-name="коломенское москва">
+                <img src="images\Церковь Вознесения.jpg" alt="Коломенское" class="card-img">
+                <div class="card-content">
+                    <h3>Церковь Вознесения в Коломенском</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>1994 г.</span>
+                    </div>
+                    <p>Первый каменный шатровый храм в России, построенный в XVI веке в честь рождения Ивана Грозного.</p>
+                    <a href="object.html?id=kolomenskoye" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 9. Казанский кремль -->
+            <article class="object-card" data-type="cultural" data-name="казань татарстан">
+                <img src="images\m-12-vostok-40-kazanskiy-kreml.jpg" alt="Казанский кремль" class="card-img">
+                <div class="card-content">
+                    <h3>Казанский кремль</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2000 г.</span>
+                    </div>
+                    <p>Уникальное сочетание православной и мусульманской культуры. Башня Сююмбике, мечеть Кул-Шариф.</p>
+                    <a href="object.html?id=kazan" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 10. Ферапонтов монастырь -->
+            <article class="object-card" data-type="cultural" data-name="ферапонтов вологда">
+                <img src="images\Ферапонтов монастырь.jpg" alt="Ферапонтов монастырь" class="card-img">
+                <div class="card-content">
+                    <h3>Ферапонтов монастырь</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2000 г.</span>
+                    </div>
+                    <p>Фрески Дионисия — вершина древнерусской живописи. Сохранились в неизменном виде.</p>
+                    <a href="object.html?id=ferapontov" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 11. Куршская коса (совместно с Литвой) -->
+            <article class="object-card" data-type="cultural" data-name="куршская коса калининград">
+                <img src="images\куршская коса культ.jpg" alt="Куршская коса" class="card-img">
+                <div class="card-content">
+                    <h3>Куршская коса</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2000 г.</span>
+                    </div>
+                    <p>Уникальный песчаный полуостров с дюнами, лесами и древними рыбацкими поселениями.</p>
+                    <a href="object.html?id=kurshskaya" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 12. Цитадель Нарын-Кала (Дербент) -->
+            <article class="object-card" data-type="cultural" data-name="дербент дагестан">
+                <img src="images\нарын кала.jpg" alt="Дербент" class="card-img">
+                <div class="card-content">
+                    <h3>Цитадель Нарын-Кала и Дербент</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2003 г.</span>
+                    </div>
+                    <p>Древнейший город России (около 5000 лет). Крепостные стены, защищавшие Каспийские ворота.</p>
+                    <a href="object.html?id=derbent" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 13. Новодевичий монастырь -->
+            <article class="object-card" data-type="cultural" data-name="новодевичий москва">
+                <img src="images\Новодевичий монастырь.jpg" alt="Новодевичий монастырь" class="card-img">
+                <div class="card-content">
+                    <h3>Новодевичий монастырь</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2004 г.</span>
+                    </div>
+                    <p>Шедевр московского барокко. Связан с историей русских цариц и боярских родов.</p>
+                    <a href="object.html?id=novodevichy" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 14. Ярославль -->
+            <article class="object-card" data-type="cultural" data-name="ярославль">
+                <img src="images\Hram-Ili-Proroka-scaled.jpg" alt="Ярославль" class="card-img">
+                <div class="card-content">
+                    <h3>Исторический центр Ярославля</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2005 г.</span>
+                    </div>
+                    <p>Образец градостроительной реформы Екатерины II. Храмы XVII века и ансамбль Стрелки.</p>
+                    <a href="object.html?id=yaroslavl" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 15. Дуга Струве (совместно с 9 странами) -->
+            <article class="object-card" data-type="cultural" data-name="дуга струве">
+                <img src="images\Struve_Geodetic_Arc-113656.jpg" alt="Дуга Струве" class="card-img">
+                <div class="card-content">
+                    <h3>Геодезическая дуга Струве</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2005 г.</span>
+                    </div>
+                    <p>Сеть пунктов триангуляции для измерения Земли. В России сохранились пункты на острове Гогланд.</p>
+                    <a href="object.html?id=struve" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 16. Булгар -->
+            <article class="object-card" data-type="cultural" data-name="булгар татарстан">
+                <img src="images\булгар.jpg" alt="Булгар" class="card-img">
+                <div class="card-content">
+                    <h3>Булгарский историко-археологический комплекс</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2014 г.</span>
+                    </div>
+                    <p>Столица средневековой Волжской Булгарии. Свидетельство принятия ислама волжскими народами.</p>
+                    <a href="object.html?id=bulgar" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 17. Свияжск -->
+            <article class="object-card" data-type="cultural" data-name="свияжск татарстан">
+                <img src="images\свияжск.jpg" alt="Свияжск" class="card-img">
+                <div class="card-content">
+                    <h3>Успенский собор острова Свияжск</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2017 г.</span>
+                    </div>
+                    <p>Остров-град на Волге. Уникальные фрески XVI века, практически полностью сохранившиеся.</p>
+                    <a href="object.html?id=sviyazhsk" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 18. Херсонес Таврический (Севастополь) -->
+            <article class="object-card" data-type="cultural" data-name="херсонес севастополь крым византия">
+                <img src="images\херсонес.jpg" alt="Херсонес Таврический" class="card-img">
+                <div class="card-content">
+                    <h3>Херсонес Таврический и его хора</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2013 г.</span>
+                    </div>
+                    <p>Древнегреческий город, основанный в V веке до н.э. Место крещения князя Владимира. Руины античного театра, базилики, средневековые кварталы.</p>
+                    <a href="object.html?id=chersonese" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 19. Культурный ландшафт Кенозерья (2024) -->
+            <article class="object-card" data-type="cultural" data-name="кенозерье архангельск">
+                <img src="images\кенозерье.jpg" alt="Кенозерье" class="card-img">
+                <div class="card-content">
+                    <h3>Культурный ландшафт Кенозерья</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2024 г.</span>
+                    </div>
+                    <p>Уникальный историко-культурный и природный комплекс Русского Севера. Деревянные церкви, часовни, священные рощи и живая традиционная культура.</p>
+                    <a href="object.html?id=kenozero" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 20. Храмы Пскова -->
+            <article class="object-card" data-type="cultural" data-name="псков">
+                <img src="images\Псков.jpg" alt="Псков" class="card-img">
+                <div class="card-content">
+                    <h3>Храмы псковской архитектурной школы</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2019 г.</span>
+                    </div>
+                    <p>Самобытная архитектура с характерными звонницами и белокаменными деталями. X-XV века.</p>
+                    <a href="object.html?id=pskov" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 21. Петроглифы Онежского озера и Белого моря -->
+            <article class="object-card" data-type="cultural" data-name="петроглифы онежский карелия">
+                <img src="images\петроглифы.jpg" alt="Петроглифы" class="card-img">
+                <div class="card-content">
+                    <h3>Петроглифы Онежского озера и Белого моря</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2021 г.</span>
+                    </div>
+                    <p>Наскальные рисунки эпохи неолита. Более 4500 изображений: люди, животные, сцены охоты.</p>
+                    <a href="object.html?id=petroglyphs" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 22. Астрономические обсерватории Казани -->
+            <article class="object-card" data-type="cultural" data-name="казань обсерватория">
+                <img src="images\observatoriya_engelgarta_kazan_tur.jpg" alt="Обсерватория Казани" class="card-img">
+                <div class="card-content">
+                    <h3>Астрономические обсерватории Казанского университета</h3>
+                    <div class="meta">
+                        <span class="cultural">Культурный</span>
+                        <span>2023 г.</span>
+                    </div>
+                    <p>Исторические обсерватории XIX века. Связаны с развитием астрономии и геодезии.</p>
+                    <a href="object.html?id=kazanObservatory" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- ПРИРОДНЫЕ ОБЪЕКТЫ (12) -->
+            
+            <!-- 23. Девственные леса Коми -->
+            <article class="object-card" data-type="natural" data-name="коми">
+                <img src="images\коми.jpg" alt="Леса Коми" class="card-img">
+                <div class="card-content">
+                    <h3>Девственные леса Коми</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>1995 г.</span>
+                    </div>
+                    <p>Самый большой нетронутый лес Европы (3,2 млн га). Девственная природа Печоры.</p>
+                    <a href="object.html?id=komi" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 24. Озеро Байкал -->
+            <article class="object-card" data-type="natural" data-name="байкал">
+                <img src="images\байкал.jpg" alt="Байкал" class="card-img">
+                <div class="card-content">
+                    <h3>Озеро Байкал</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>1996 г.</span>
+                    </div>
+                    <p>Самое глубокое озеро планеты (1642 м). 20% мировых запасов пресной воды.</p>
+                    <a href="object.html?id=baikal" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 25. Вулканы Камчатки -->
+            <article class="object-card" data-type="natural" data-name="камчатка вулканы">
+                <img src="images\вулканы.jpg" alt="Камчатка" class="card-img">
+                <div class="card-content">
+                    <h3>Вулканы Камчатки</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>1996 г.</span>
+                    </div>
+                    <p>Один из самых активных вулканических регионов мира. Долина гейзеров, 30 действующих вулканов.</p>
+                    <a href="object.html?id=kamchatka" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 26. Алтай (Золотые горы) -->
+            <article class="object-card" data-type="natural" data-name="алтай">
+                <img src="images\алтай.jpg" alt="Алтай" class="card-img">
+                <div class="card-content">
+                    <h3>Золотые горы Алтая</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>1998 г.</span>
+                    </div>
+                    <p>Уникальные ландшафты: тайга, степи, тундра, ледники. Телецкое озеро, гора Белуха.</p>
+                    <a href="object.html?id=altai" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 27. Западный Кавказ -->
+            <article class="object-card" data-type="natural" data-name="кавказ">
+                <img src="images\кавказ.jpg" alt="Кавказ" class="card-img">
+                <div class="card-content">
+                    <h3>Западный Кавказ</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>1999 г.</span>
+                    </div>
+                    <p>Один из немногих высокогорных массивов Европы, не подвергшихся антропогенному воздействию.</p>
+                    <a href="object.html?id=caucasus" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 28. Куршская коса (уже добавили в культурные, но она смешанная/природная) - дублируем для природы 
+            <article class="object-card" data-type="natural" data-name="куршская коса">
+                <img src="images\Куршская коса прир.jpg" alt="Куршская коса" class="card-img">
+                <div class="card-content">
+                    <h3>Куршская коса (природный аспект)</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>2000 г.</span>
+                    </div>
+                    <p>Уникальные дюнные ландшафты, пути миграции птиц. "Танцующий лес".</p>
+                    <a href="object.html?id=kurshskaya" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article> -->
+
+            <!-- 29. Центральный Сихотэ-Алинь -->
+            <article class="object-card" data-type="natural" data-name="сихотэ алинь уссурийск">
+                <img src="images\сихотэ алинь.jpg" alt="Сихотэ-Алинь" class="card-img">
+                <div class="card-content">
+                    <h3>Центральный Сихотэ-Алинь</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>2001 г.</span>
+                    </div>
+                    <p>Место обитания амурского тигра. Уникальное смешение тайги и субтропиков.</p>
+                    <a href="object.html?id=sikhote" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 30. Убсунурская котловина (совместно с Монголией) -->
+            <article class="object-card" data-type="natural" data-name="тува убсунур">
+                <img src="images\убсунурская котловина.jpg" alt="Убсунур" class="card-img">
+                <div class="card-content">
+                    <h3>Убсунурская котловина</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>2003 г.</span>
+                    </div>
+                    <p>Уникальный бассейн с контрастными ландшафтами: от пустынь до тундры.</p>
+                    <a href="object.html?id=ubsunur" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 31. Остров Врангеля -->
+            <article class="object-card" data-type="natural" data-name="врангель чукотка">
+                <img src="images\остров врангеля.jpg" alt="Остров Врангеля" class="card-img">
+                <div class="card-content">
+                    <h3>Остров Врангеля</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>2004 г.</span>
+                    </div>
+                    <p>Родильный дом белых медведей. Крупнейшие лежбища моржей, уникальная арктическая флора.</p>
+                    <a href="object.html?id=wrangel" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 32. Плато Путорана -->
+            <article class="object-card" data-type="natural" data-name="путорана норильск">
+                <img src="images\plato-putorana-oblozhka.jpg" alt="Путорана" class="card-img">
+                <div class="card-content">
+                    <h3>Плато Путорана</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>2010 г.</span>
+                    </div>
+                    <p>Столообразные горы с тысячами водопадов и чистейшими озерами. "Край десяти тысяч озер".</p>
+                    <a href="object.html?id=putorana" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 33. Ленские столбы -->
+            <article class="object-card" data-type="natural" data-name="ленские столбы якутия">
+                <img src="images\ленские столбы.jpg" alt="Ленские столбы" class="card-img">
+                <div class="card-content">
+                    <h3>Ленские столбы</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>2012 г.</span>
+                    </div>
+                    <p>Вертикальные скальные образования высотой до 100 метров вдоль реки Лены. Кембрийские окаменелости.</p>
+                    <a href="object.html?id=lenaPillars" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 34. Пещера Шульган-Таш (Капова пещера) - 2025 -->
+            <article class="object-card" data-type="natural" data-name="шульган-таш капова пещера башкортостан">
+            <img src="images\шульган таш.jpg" alt="Пещера Шульган-Таш" class="card-img">
+            <div class="card-content">
+                <h3>Наскальная живопись пещеры Шульган-Таш</h3>
+                <div class="meta">
+                    <span class="natural">Природный/Культурный</span>
+                    <span>2025 г.</span>
+                </div>
+                <p>Древнейшие наскальные рисунки эпохи палеолита (возраст до 30 тыс. лет). Изображения мамонтов, бизонов, лошадей и верблюда. Карстовая пещера с подземными озёрами.</p>
+                <a href="object.html?id=shulganTash" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+            </div>
+            </article>
+
+            <!-- 35. Ландшафты Даурии (совместно с Монголией) - добавлен в 2017 -->
+            <article class="object-card" data-type="natural" data-name="даурия забайкалье">
+                <img src="images\даурия.jpg" alt="Даурия" class="card-img">
+                <div class="card-content">
+                    <h3>Ландшафты Даурии</h3>
+                    <div class="meta">
+                        <span class="natural">Природный</span>
+                        <span>2017 г.</span>
+                    </div>
+                    <p>Уникальные степные экосистемы, озера Торей, места гнездования журавлей.</p>
+                    <a href="object.html?id=dauria" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="objects.html">Все объекты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Категории объектов</h4>
+                    <ul>
+                        <li><a href="objects.html?type=cultural">Культурное наследие</a></li>
+                        <li><a href="objects.html?type=natural">Природное наследие</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="copyright">
+                <p>© 2026 Образовательный проект "Объекты ЮНЕСКО в России". Все права защищены.</p>
+                <p>Материалы сайта могут быть использованы в учебных целях.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Дополнительный скрипт для поиска по объектам
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const cards = document.querySelectorAll('.object-card');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const query = this.value.toLowerCase().trim();
+                    
+                    cards.forEach(card => {
+                        const name = card.getAttribute('data-name') || '';
+                        const title = card.querySelector('h3').textContent.toLowerCase();
+                        const text = card.querySelector('p').textContent.toLowerCase();
+                        
+                        if (title.includes(query) || text.includes(query) || name.includes(query)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    
+                    // Сбрасываем активные фильтры при поиске
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    document.querySelector('[data-filter="all"]').classList.add('active');
+                });
+            }
+            
+            // Обработка параметров URL (например, objects.html?type=cultural)
+            const urlParams = new URLSearchParams(window.location.search);
+            const typeParam = urlParams.get('type');
+            
+            if (typeParam) {
+                const filterBtn = document.querySelector(`[data-filter="${typeParam}"]`);
+                if (filterBtn) {
+                    filterBtn.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
