@@ -80,7 +80,7 @@ nav a:hover, nav a.active {
 
 /* Герой-секция */
 .hero {
-    background: linear-gradient(rgba(30, 60, 114, 0.85), rgba(42, 82, 152, 0.9)), url('https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+    background: linear-gradient(rgba(30, 60, 114, 0.85), rgba(42, 82, 152, 0.9)), url('images/кремль2.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -321,4 +321,26 @@ footer {
         flex-direction: column;
         gap: 30px;
     }
+}
+/* Полная блокировка переходов по ссылкам вокруг картинок */
+.gallery a,
+.gallery a:link,
+.gallery a:visited,
+.gallery a:hover,
+.gallery a:active {
+    pointer-events: none !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+/* Но саму картинку делаем кликабельной */
+.gallery img {
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+/* Блокируем также hero-секцию */
+#object-hero a,
+#object-hero a:link {
+    pointer-events: none !important;
 }

@@ -150,6 +150,25 @@
                 font-size: 2rem;
             }
         }
+        /* Стили для кнопок навигации в лайтбоксе */
+        #prev-image, #next-image {
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        #prev-image:hover, #next-image:hover {
+            background: rgba(255, 255, 255, 0.3) !important;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            #prev-image, #next-image {
+            width: 40px;
+            height: 40px;
+            font-size: 30px;
+            background: rgba(0,0,0,0.5);
+            }
+        }
     </style>
 </head>
 <body>
@@ -358,9 +377,11 @@
                     const img = document.createElement('img');
                     img.src = imgSrc;
                     img.alt = data.title;
-                    img.addEventListener('click', function() {
-                        window.open(imgSrc, '_blank');
-                    });
+                    // Убираем window.open — теперь просто сохраняем ссылку для лайтбокса
+                    img.setAttribute('data-src', imgSrc);
+                    img.style.cursor = 'pointer';
+                    // Добавляем класс для лёгкого нахождения
+                    img.classList.add('gallery-img');
                     gallery.appendChild(img);
                 });
             } else {
@@ -379,5 +400,204 @@
             document.getElementById('share-ok').href = 'https://connect.ok.ru/offer?url=' + pageUrl + '&title=' + pageTitle;
         });
     </script>
+<!-- Модальное окно-галерея с листанием -->
+<div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; justify-content: center; align-items: center; flex-direction: column;">
+    
+    <span id="close-lightbox" style="position: absolute; top: 15px; right: 20px; color: white; font-size: 45px; cursor: pointer; font-family: monospace; z-index: 10001;">&times;</span>
+    
+    <div id="lightbox-counter" style="position: absolute; top: 20px; left: 20px; color: white; background: rgba(0,0,0,0.6); padding: 5px 12px; border-radius: 20px; font-size: 14px; font-family: sans-serif;">1 / 1</div>
+    
+    <button id="prev-image" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 40px; cursor: pointer; padding: 15px 10px; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; z-index: 10001;">&#10094;</button>
+    
+    <img id="lightbox-img" src="" alt="" style="max-width: 90%; max-height: 80%; border-radius: 8px; object-fit: contain;">
+    
+    <p id="lightbox-caption" style="color: #ccc; margin-top: 15px; text-align: center; font-size: 14px; max-width: 80%;"></p>
+    
+    <button id="next-image" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 40px; cursor: pointer; padding: 15px 10px; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; z-index: 10001;">&#10095;</button>
+</div>
+
+<script>
+(function() {
+    // === БЛОКИРОВКА ПЕРЕХОДОВ ПО ССЫЛКАМ ===
+    function blockImageLinks() {
+        document.querySelectorAll('.gallery a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            });
+        });
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.style.cursor = 'pointer';
+        });
+    }
+    
+    // === ЛАЙТБОКС ===
+    let currentImages = [];
+    let currentIndex = 0;
+    let lightbox, lightboxImg, lightboxCounter, lightboxCaption;
+    
+    function collectAllImages() {
+        const images = [];
+        const hero = document.getElementById('object-hero');
+        if (hero) {
+            const bg = getComputedStyle(hero).backgroundImage;
+            const match = bg.match(/url\(["']?(.+?)["']?\)/);
+            if (match) images.push(match[1]);
+        }
+        document.querySelectorAll('.gallery img').forEach(img => {
+            if (img.src && !images.includes(img.src)) images.push(img.src);
+        });
+        return images;
+    }
+    
+    function updateLightbox() {
+        if (!lightboxImg || !currentImages.length) return;
+        lightboxImg.src = currentImages[currentIndex];
+        if (lightboxCounter) lightboxCounter.textContent = `${currentIndex+1} / ${currentImages.length}`;
+        const title = document.getElementById('object-title')?.textContent || 'Объект';
+        if (lightboxCaption) lightboxCaption.textContent = `${title} — фото ${currentIndex+1}`;
+    }
+    
+    function openLightbox(startIdx = 0) {
+        currentImages = collectAllImages();
+        if (!currentImages.length) return;
+        currentIndex = Math.min(startIdx, currentImages.length - 1);
+        if (currentIndex < 0) currentIndex = 0;
+        updateLightbox();
+        if (lightbox) {
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        history.pushState({lightbox: true}, '', window.location.href);
+    }
+    
+    function closeLightbox() {
+        if (lightbox) {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+    
+    function nextImage() { if (currentImages.length) { currentIndex = (currentIndex + 1) % currentImages.length; updateLightbox(); } }
+    function prevImage() { if (currentImages.length) { currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length; updateLightbox(); } }
+    
+    // Инициализация
+    function init() {
+        lightbox = document.getElementById('lightbox');
+        lightboxImg = document.getElementById('lightbox-img');
+        lightboxCounter = document.getElementById('lightbox-counter');
+        lightboxCaption = document.getElementById('lightbox-caption');
+        
+        if (!lightbox) return;
+        
+        document.getElementById('close-lightbox')?.addEventListener('click', closeLightbox);
+        document.getElementById('prev-image')?.addEventListener('click', prevImage);
+        document.getElementById('next-image')?.addEventListener('click', nextImage);
+        
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        
+        // Свайп
+        let touchStart = 0;
+        lightbox.addEventListener('touchstart', (e) => { touchStart = e.changedTouches[0].screenX; });
+        lightbox.addEventListener('touchend', (e) => {
+            const diff = e.changedTouches[0].screenX - touchStart;
+            if (Math.abs(diff) > 50) diff > 0 ? prevImage() : nextImage();
+        });
+        
+        // Клики по картинкам
+        document.querySelectorAll('.gallery img').forEach((img, idx) => {
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const all = collectAllImages();
+                const index = all.findIndex(src => src === img.src);
+                openLightbox(index !== -1 ? index : idx);
+            });
+        });
+        
+        const hero = document.getElementById('object-hero');
+        if (hero) {
+            hero.style.cursor = 'pointer';
+            hero.addEventListener('click', () => openLightbox(0));
+        }
+        
+        // Кнопка "Назад"
+        window.addEventListener('popstate', (e) => {
+            if (lightbox.style.display === 'flex') {
+                closeLightbox();
+                if (e.state?.lightbox) history.pushState(null, null, window.location.href);
+            }
+        });
+        
+        blockImageLinks();
+    }
+    
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+    
+    new MutationObserver(() => {
+        blockImageLinks();
+        document.querySelectorAll('.gallery img').forEach(img => {
+            if (!img._hasListener) {
+                img._hasListener = true;
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const all = collectAllImages();
+                    const idx = all.findIndex(src => src === img.src);
+                    openLightbox(idx !== -1 ? idx : 0);
+                });
+            }
+        });
+    }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+<script>
+    (function() {
+        // УНИЧТОЖАЕМ ВСЕ ССЫЛКИ ВОКРУГ КАРТИНОК
+        function destroyAllImageLinks() {
+            // Находим все ссылки, которые содержат картинки
+            const linksWithImages = document.querySelectorAll('a img');
+            linksWithImages.forEach(img => {
+                const parentLink = img.closest('a');
+                if (parentLink) {
+                    // Заменяем ссылку на её содержимое (убираем тег <a>)
+                    const parent = parentLink.parentNode;
+                    parent.insertBefore(img, parentLink);
+                    parent.removeChild(parentLink);
+                    console.log('Удалил ссылку вокруг картинки');
+                }
+            });
+            
+            // Дополнительно: ищем любые ссылки внутри .gallery
+            const galleryLinks = document.querySelectorAll('.gallery a');
+            galleryLinks.forEach(link => {
+                const parent = link.parentNode;
+                while (link.firstChild) {
+                    parent.insertBefore(link.firstChild, link);
+                }
+                parent.removeChild(link);
+            });
+        }
+        
+        // Запускаем сразу
+        destroyAllImageLinks();
+        
+        // Запускаем после каждой загрузки контента
+        const observer = new MutationObserver(function() {
+            destroyAllImageLinks();
+        });
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+        
+        // Повторяем несколько раз с задержкой
+        setTimeout(destroyAllImageLinks, 100);
+        setTimeout(destroyAllImageLinks, 500);
+        setTimeout(destroyAllImageLinks, 1000);
+    })();
+</script>
 </body>
 </html>
