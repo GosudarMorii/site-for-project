@@ -211,8 +211,8 @@ const unescoData = {
     kurshskaya: {
         title: "Куршская коса",
         year: 2000,
-        type: "Культурный (смешанный)",
-        typeClass: "cultural", 
+        type: "Природный (смешанный)",
+        typeClass: "natural", 
         region: "Калининградская область",
         criteria: "V",
         unescoId: "994",
