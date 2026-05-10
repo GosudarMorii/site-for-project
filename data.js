@@ -695,8 +695,8 @@ const unescoData = {
     shulganTash: {
         title: "Наскальная живопись пещеры Шульган-Таш",
         year: 2025,
-        type: "Природный/Культурный",
-        typeClass: "natural",
+        type: "Культурный/Природный",
+        typeClass: "cultural",
         region: "Республика Башкортостан",
         criteria: "I, III, VIII",
         unescoId: "1701",
